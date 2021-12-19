@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create your first Block</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <script type="text/javascript" src="lib/bsv.min.js"></script>
+    <script type="text/javascript" src="lib/sha256.min.js"></script>
+
+    
+  </head>
+  <body>
+      
+    <div id="block" style="margin:auto;">
+        <h1 id="head" style="text-align: center; font-family: Arial, Helvetica, sans-serif;">Create your own Bitcoin blocks!</h1>
+        
+    </div>
+
+    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(184, 184, 184); margin: auto; ">
+        <h2 style="text-align: center; font-family: Arial, Helvetica, sans-serif; padding-top: 20px;">My Second Block</h2>
+        <p id="nonce" style="text-align: center; font-family: Arial, Helvetica, sans-serif;"></p>
+    </div>
+
+    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(184, 184, 184); margin: auto; margin-top: 50px; ">
+      <form style="text-align: center; padding-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+        <label for="fname" >Enter the last 4 Characters of previous block:</label><br>
+        <input type="text" id="hashbytes" name="fname"><br>
+      </form>
+    </div>
+
+    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(184, 184, 184); margin: auto; ">
+      <h2 style="text-align: center; font-family: Arial, Helvetica, sans-serif; padding-top: 20px;">My Hash</h2>
+      <p id="hasher" style="text-align: center; font-family: Arial, Helvetica, sans-serif;"></p>
+    </div>
+
+    <div style="width: 200px; height: 100px; background-color: cadetblue; border-radius: 10px;  margin: auto; margin-top: 50px;">
+        <button onclick="GenNonce()">Iterate Nonce</button>
+    </div>
+
+    <script>
+
+    function GenNonce() {
+
+        var hashbytesxo = document.getElementById("hashbytes").value;
+
+        console.log(hashbytesxo)
+
+        var nonce = Math.floor(Math.random() * 30);
+
+        document.getElementById('nonce').innerHTML = 'Nonce:' + nonce;
+
+        var hash1 = sha256.create();
+
+        hash1.update('ChainNonce' + hashbytesxo + nonce);
+
+        console.log('my sha256 hash2 ' + hash1.hex())
+
+        document.getElementById('hasher').innerHTML = hash1.hex();
+
+    }
+
+
+    </script>
+
+
+
+  </body>
+</html>
