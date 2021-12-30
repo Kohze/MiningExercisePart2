@@ -72,12 +72,7 @@
 
         var firstNum = hash1.hex().charAt(0);
 
-        if(firstNum == 0) {
-          console.log("Congratulations you mined a block!")
-          document.getElementById('blockstatus').innerHTML = "Congratulations! You mined another block!"
-        } else {
-          document.getElementById('blockstatus').innerHTML = ""
-        }
+        {firstNum==0?document.getElementById('blockstatus').innerHTML = "Congratulations! You mined another block!":document.getElementById('blockstatus').innerHTML = ""}
 
     }
 
