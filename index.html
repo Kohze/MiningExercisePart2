@@ -46,35 +46,35 @@
 
       var nonce = -1;
 
-    function GenNonce() {
+      function GenNonce() {
 
-        var hashbytesxo = document.getElementById("hashbytes").value;
+          var hashbytesxo = document.getElementById("hashbytes").value;
 
-        console.log(hashbytesxo)
+          console.log(hashbytesxo)
 
-        nonce++;
+          nonce++;
 
-        document.getElementById('nonce').innerHTML = 'Nonce:' + nonce;
+          document.getElementById('nonce').innerHTML = 'Nonce:' + nonce;
 
-        var hash1 = sha256.create();
+          var hash1 = sha256.create();
 
-        hash1.update('ChainNonce' + hashbytesxo + nonce);
+          hash1.update('ChainNonce' + hashbytesxo + nonce);
 
-        console.log('my sha256 hash2 ' + hash1.hex())
+          console.log('my sha256 hash2 ' + hash1.hex())
 
-        document.getElementById('hasher').innerHTML = hash1.hex();
+          document.getElementById('hasher').innerHTML = hash1.hex();
 
-        const timeElapsed = Date.now();
+          const timeElapsed = Date.now();
 
-        const today = new Date(timeElapsed);
+          const today = new Date(timeElapsed);
 
-        document.getElementById('timenow').innerHTML = today.toDateString();
+          document.getElementById('timenow').innerHTML = today.toDateString();
 
-        var firstNum = hash1.hex().charAt(0);
+          var firstNum = hash1.hex().charAt(0);
 
-        {firstNum==0?document.getElementById('blockstatus').innerHTML="Congratulations! You mined another block!":document.getElementById('blockstatus').innerHTML=""}
+          {firstNum==0?document.getElementById('blockstatus').innerHTML="Congratulations! You mined another block!":document.getElementById('blockstatus').innerHTML=""}
 
-    }
+      }
 
 
     </script>
