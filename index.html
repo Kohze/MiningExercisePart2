@@ -9,7 +9,7 @@
     
     <script type="text/javascript" src="lib/bsv.min.js"></script>
     <script type="text/javascript" src="lib/sha256.min.js"></script>
-
+    <link href="./main.css" rel="stylesheet" type="text/css" />
     
   </head>
   <body>
@@ -19,25 +19,27 @@
         
     </div>
 
-    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(184, 184, 184); margin: auto; ">
-        <h2 style="text-align: center; font-family: Arial, Helvetica, sans-serif; padding-top: 20px;">My Second Block</h2>
-        <p id="nonce" style="text-align: center; font-family: Arial, Helvetica, sans-serif;"></p>
+    <div style="width: 600px; height: 200px; border-radius: 10px; background-color: rgb(226, 226, 226); margin: auto; ">
+      <h2 style="text-align: center; font-family: Arial, Helvetica, sans-serif; padding-top: 20px;">My Second Block</h2>
+      <p id="timenow" style="text-align: center; font-family: Arial, Helvetica, sans-serif;"></p>
+      <p id="nonce" style="text-align: center; font-family: Arial, Helvetica, sans-serif;"></p>
+      <h3 id="blockstatus" style="text-align: center; font-family: Arial, Helvetica, sans-serif; color: rgb(47, 255, 127); background-color: black;"></h3>
     </div>
 
-    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(184, 184, 184); margin: auto; margin-top: 50px; ">
+    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(226, 226, 226); margin: auto; margin-top: 50px; ">
       <form style="text-align: center; padding-top: 20px; font-family: Arial, Helvetica, sans-serif;">
-        <label for="fname" >Enter the last 4 Characters of previous block:</label><br>
-        <input type="text" id="hashbytes" name="fname"><br>
+        <label for="fname" style="color: black;">Enter the last 4 Characters of previous block:</label><br>
+        <input type="text" id="hashbytes" name="fname" style="margin: 10px;"><br>
       </form>
     </div>
 
-    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(184, 184, 184); margin: auto; ">
+    <div style="width: 600px; height: 100px; border-radius: 10px; background-color: rgb(226, 226, 226); margin: auto; ">
       <h2 style="text-align: center; font-family: Arial, Helvetica, sans-serif; padding-top: 20px;">My Hash</h2>
       <p id="hasher" style="text-align: center; font-family: Arial, Helvetica, sans-serif;"></p>
     </div>
 
-    <div style="width: 200px; height: 100px; background-color: cadetblue; border-radius: 10px;  margin: auto; margin-top: 50px;">
-        <button onclick="GenNonce()">Iterate Nonce</button>
+    <div style="width: 200px; height: 100px; margin: auto; margin-top: 50px;">
+      <button class="btn btn-light-info mb-2" style="margin-left: 5px; border-radius: 10px; height: 75px; width: 200px;" onclick="GenNonce()">Iterate Nonce</button>
     </div>
 
     <script>
@@ -61,6 +63,21 @@
         console.log('my sha256 hash2 ' + hash1.hex())
 
         document.getElementById('hasher').innerHTML = hash1.hex();
+
+        const timeElapsed = Date.now();
+
+        const today = new Date(timeElapsed);
+
+        document.getElementById('timenow').innerHTML = today.toDateString();
+
+        var firstNum = hash1.hex().charAt(0);
+
+        if(firstNum == 0) {
+          console.log("Congratulations you mined a block!")
+          document.getElementById('blockstatus').innerHTML = "Congratulations! You mined another block!"
+        } else {
+          document.getElementById('blockstatus').innerHTML = ""
+        }
 
     }
 
